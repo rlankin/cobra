@@ -3,7 +3,7 @@
   import DoubleElimStandings from "./DoubleElimStandings.svelte";
   import { loadStandings, type StandingsData } from "./StandingsData";
   import SwissStandings from "./SwissStandings.svelte";
-        import type { Stage, CutStage, SwissStage } from "../models/Standings";
+  import type { Stage, CutStage, SwissStage } from "../models/Standings";
 
   export let tournamentId: number;
   let data: StandingsData;
