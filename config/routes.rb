@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   end
 
   namespace :beta do
+    root 'index'
     post :set_beta
     resources :tournaments do
       resources :rounds, only: %i[index show create destroy] do

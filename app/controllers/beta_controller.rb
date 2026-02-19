@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class BetaController < ApplicationController
+  def index
+    authorize :beta, :beta_testing_enabled?
+  end
+
   def set_beta
     authorize :beta, :beta_testing_enabled?
 

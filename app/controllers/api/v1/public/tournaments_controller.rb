@@ -3,7 +3,7 @@
 module Api
   module V1
     module Public
-      # Controller for the CardCycle resource.
+      # API controller for the Tournament resource
       class TournamentsController < PublicApiController
         def index
           add_total_stat(params)
