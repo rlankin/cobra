@@ -1,9 +1,11 @@
 <script lang="ts">
-  import type { Pairing, PairingsContext, Player } from "./PairingsData";
+  import type { PairingsContext } from "./PairingsData";
   import Identity from "../identities/Identity.svelte";
   import { showIdentities } from "../utils/ShowIdentities";
   import FontAwesomeIcon from "../widgets/FontAwesomeIcon.svelte";
   import { getContext } from "svelte";
+  import type { Player } from "../models/Player";
+  import type { Pairing } from "../models/Pairing";
 
   let {
     player,

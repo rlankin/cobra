@@ -4,10 +4,10 @@
     createDemoTournament,
     type Errors,
     loadNewDemoTournament,
-    type DemoTournamentSettings,
     ValidationError,
   } from "./DemoTournamentSettings";
   import DemoTournamentSettingsForm from "./DemoTournamentSettingsForm.svelte";
+  import type { DemoTournamentSettings } from "../models/TournamentSettings";
 
   let tournament: DemoTournamentSettings;
   let csrfToken = "";

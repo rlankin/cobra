@@ -1,12 +1,12 @@
 <script lang="ts">
-  import type {
-    BracketStage,
-    BracketPairing,
-    PredecessorMap,
-  } from "./BracketData.ts";
   import BracketMatchNode from "./BracketMatchNode.svelte";
   import { SvelteMap } from "svelte/reactivity";
   import { showIdentities } from "../utils/ShowIdentities.js";
+  import type {
+    BracketPairing,
+    BracketStage,
+    PredecessorMap,
+  } from "../models/Bracket";
 
   let { stage }: { stage: BracketStage } = $props();
 

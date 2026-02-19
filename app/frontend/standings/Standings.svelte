@@ -1,14 +1,9 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import DoubleElimStandings from "./DoubleElimStandings.svelte";
-  import type {
-    CutStage,
-    Stage,
-    StandingsData,
-    SwissStage,
-  } from "./StandingsData";
-  import { loadStandings } from "./StandingsData";
+  import { loadStandings, type StandingsData } from "./StandingsData";
   import SwissStandings from "./SwissStandings.svelte";
+        import type { Stage, CutStage, SwissStage } from "../models/Standings";
 
   export let tournamentId: number;
   let data: StandingsData;

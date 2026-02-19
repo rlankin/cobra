@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import FontAwesomeIcon from "../widgets/FontAwesomeIcon.svelte";
-  import type { Round } from "./PairingsData";
+  import type { Round } from "../models/Round";
 
   let {
     round,

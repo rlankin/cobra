@@ -1,7 +1,9 @@
 <script lang="ts">
+  import type { Pairing } from "../models/Pairing";
+  import type { ScoreReport } from "../models/ScoreReport";
+  import type { Stage } from "../models/Stage";
   import FontAwesomeIcon from "../widgets/FontAwesomeIcon.svelte";
-  import type { Pairing, Stage } from "./PairingsData";
-  import { scorePresets, type ScoreReport } from "./SelfReport";
+  import { scorePresets } from "./SelfReport";
 
   let {
     stage,

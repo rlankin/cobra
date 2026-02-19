@@ -1,13 +1,13 @@
 <script lang="ts">
+  import IdentityComponent from "../identities/Identity.svelte";
+  import { showIdentities } from "../utils/ShowIdentities";
+  import type { Identity } from "../models/Identity";
   import type {
     BracketPairing,
     Player,
     PlayerSource,
     PredecessorMap,
-  } from "./BracketData";
-  import type { Identity } from "../identities/Identity";
-  import IdentityComponent from "../identities/Identity.svelte";
-  import { showIdentities } from "../utils/ShowIdentities";
+  } from "../models/Bracket";
 
   export let match: BracketPairing;
   export let allMatches: BracketPairing[];

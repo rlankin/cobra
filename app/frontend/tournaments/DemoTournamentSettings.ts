@@ -1,18 +1,11 @@
+import type { DemoTournamentSettings } from "../models/TournamentSettings";
+
 export type Errors = Record<string, string[]>;
 
 declare const Routes: {
   new_demo_form_tournaments_path: () => string;
   create_demo_tournaments_path: () => string;
 };
-
-export interface DemoTournamentSettings {
-  id?: number;
-  name?: string;
-  swiss_format?: string;
-  num_players?: number;
-  num_first_round_byes?: number;
-  assign_ids?: boolean;
-}
 
 export interface DemoTournamentSettingsData {
   tournament: DemoTournamentSettings;

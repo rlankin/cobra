@@ -1,13 +1,10 @@
-import {
-  Player,
-  Tournament,
-  type Pairing,
-  type PairingsData,
-  type Round,
-  type RoundTimer,
-  type Stage,
-} from "../pairings/PairingsData";
-import type { ScoreReport } from "../pairings/SelfReport";
+import type { Pairing } from "../models/Pairing";
+import type { Player } from "../models/Player";
+import type { Round, RoundTimer } from "../models/Round";
+import type { ScoreReport } from "../models/ScoreReport";
+import type { Stage } from "../models/Stage";
+import type { Tournament } from "../models/Tournament";
+import { type PairingsData } from "../pairings/PairingsData";
 
 export const MockPlayerAlice: Player = {
   id: 1,

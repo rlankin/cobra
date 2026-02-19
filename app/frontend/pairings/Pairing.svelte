@@ -1,23 +1,18 @@
 <script lang="ts">
   import { getContext } from "svelte";
-  import {
-    type Pairing,
-    type PairingsContext,
-    type Player,
-    type Round,
-    type Stage,
-    Tournament,
-  } from "./PairingsData";
-  import {
-    type ScoreReport,
-    readableReportScore,
-    reportsMatch,
-  } from "./SelfReport";
+  import { type PairingsContext } from "./PairingsData";
+  import { readableReportScore, reportsMatch } from "./SelfReport";
   import FontAwesomeIcon from "../widgets/FontAwesomeIcon.svelte";
   import SelfReportOptions from "./SelfReportOptions.svelte";
   import ModalDialog from "../widgets/ModalDialog.svelte";
   import PlayerDisplay from "./PlayerDisplay.svelte";
   import AdminReportOptions from "./AdminReportOptions.svelte";
+  import type { Tournament } from "../models/Tournament";
+  import type { Stage } from "../models/Stage";
+  import type { Round } from "../models/Round";
+  import type { Pairing } from "../models/Pairing";
+  import type { ScoreReport } from "../models/ScoreReport";
+  import type { Player } from "../models/Player";
 
   let {
     tournament,

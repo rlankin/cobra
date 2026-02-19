@@ -1,5 +1,7 @@
+import type { Pairing } from "../models/Pairing";
+import type { ScoreReport } from "../models/ScoreReport";
+import type { Stage } from "../models/Stage";
 import { csrfToken } from "../utils/network";
-import { type Pairing, type Stage } from "./PairingsData";
 
 declare const Routes: {
   report_beta_tournament_round_pairing_path: (
@@ -94,20 +96,6 @@ export async function resetReports(
   );
 
   return response.status === 200;
-}
-
-export interface ScoreReport {
-  report_player_id?: number;
-  score1: number | null;
-  score2: number | null;
-  score1_corp: number | null;
-  score2_corp: number | null;
-  score1_runner: number | null;
-  score2_runner: number | null;
-  intentional_draw: boolean;
-  two_for_one?: boolean;
-  label?: string;
-  extra_self_report_label?: string;
 }
 
 export function reportsMatch(

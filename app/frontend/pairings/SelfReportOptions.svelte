@@ -1,7 +1,9 @@
 <script lang="ts">
-  import { type Pairing, type Stage } from "./PairingsData";
-  import { type ScoreReport, scorePresets } from "./SelfReport";
+  import { scorePresets } from "./SelfReport";
   import ModalDialog from "../widgets/ModalDialog.svelte";
+  import type { Stage } from "../models/Stage";
+  import type { Pairing } from "../models/Pairing";
+  import type { ScoreReport } from "../models/ScoreReport";
 
   let {
     stage,

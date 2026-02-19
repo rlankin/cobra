@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount, setContext } from "svelte";
   import FontAwesomeIcon from "../widgets/FontAwesomeIcon.svelte";
-  import { type RoundData, loadRound } from "./RoundData";
+  import { loadRound, type RoundData } from "./RoundData";
   import GlobalMessages from "../widgets/GlobalMessages.svelte";
   import PairingComponent from "./Pairing.svelte";
   import {
@@ -10,14 +10,10 @@
     deletePairing,
     deleteRound as deleteRoundRequest,
     rePairRound,
-    type NewPairing,
   } from "./PairingsData";
-  import {
-    changePlayerSide,
-    reportScore,
-    resetReports,
-    type ScoreReport,
-  } from "./SelfReport";
+  import { changePlayerSide, reportScore, resetReports } from "./SelfReport";
+  import type { NewPairing } from "../models/Pairing";
+  import type { ScoreReport } from "../models/ScoreReport";
 
   let {
     tournamentId,

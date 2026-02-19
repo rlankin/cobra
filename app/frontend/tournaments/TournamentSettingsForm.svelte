@@ -1,12 +1,11 @@
 <script lang="ts">
-  import {
-    emptyTournamentOptions,
-    type Errors,
-    type FeatureFlags,
-    type TournamentOptions,
-    type TournamentSettings,
-  } from "./TournamentSettings";
+  import { emptyTournamentOptions, type Errors } from "./TournamentSettings";
   import FontAwesomeIcon from "../widgets/FontAwesomeIcon.svelte";
+  import type {
+    FeatureFlags,
+    TournamentOptions,
+    TournamentSettings,
+  } from "../models/TournamentSettings";
   export let tournament: TournamentSettings = {};
   export let options: TournamentOptions = emptyTournamentOptions();
   export let featureFlags: FeatureFlags = {};

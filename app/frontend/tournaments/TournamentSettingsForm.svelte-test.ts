@@ -2,10 +2,10 @@ import { render, screen, fireEvent } from "@testing-library/svelte";
 import { describe, it, expect, vi } from "vitest";
 import TournamentSettingsForm from "./TournamentSettingsForm.svelte";
 import type {
-  TournamentSettings,
-  TournamentOptions,
   FeatureFlags,
-} from "./TournamentSettings";
+  TournamentOptions,
+  TournamentSettings,
+} from "../models/TournamentSettings";
 
 describe("TournamentSettingsForm", () => {
   const tournament: TournamentSettings = {

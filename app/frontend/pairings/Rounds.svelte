@@ -19,11 +19,8 @@
   import GlobalMessages from "../widgets/GlobalMessages.svelte";
   import ModalDialog from "../widgets/ModalDialog.svelte";
   import { showReportedPairings } from "../utils/ShowReportedPairings";
-  import {
-    changePlayerSide,
-    reportScore,
-    type ScoreReport,
-  } from "./SelfReport";
+  import { changePlayerSide, reportScore } from "./SelfReport";
+  import type { ScoreReport } from "../models/ScoreReport";
 
   let { tournamentId }: { tournamentId: number } = $props();
 

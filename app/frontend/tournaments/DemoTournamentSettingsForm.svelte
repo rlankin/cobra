@@ -1,9 +1,7 @@
 <script lang="ts">
-  import {
-    type Errors,
-    type DemoTournamentSettings,
-  } from "./DemoTournamentSettings";
+  import { type Errors } from "./DemoTournamentSettings";
   import FontAwesomeIcon from "../widgets/FontAwesomeIcon.svelte";
+  import type { DemoTournamentSettings } from "../models/TournamentSettings";
   export let tournament: DemoTournamentSettings = {};
 
   export let submitLabel = "Save";

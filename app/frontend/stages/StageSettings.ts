@@ -1,3 +1,4 @@
+import type { StageSettings } from "../models/Stage";
 import { globalMessages } from "../utils/GlobalMessageState.svelte";
 import { csrfToken } from "../utils/network";
 
@@ -9,23 +10,8 @@ declare const Routes: {
   tournament_stage_path: (tournamentId: number, stageId: number) => string;
 };
 
-export interface Stage {
-  id: number;
-  tournament_id: number;
-  number: number;
-  format: string | null;
-  table_ranges: TableRange[];
-}
-
-export interface TableRange {
-  id?: number;
-  stage_id: number;
-  first_table: number;
-  last_table: number;
-}
-
 export class StageData {
-  stage: Stage;
+  stage: StageSettings;
   warning?: string;
 
   constructor() {
@@ -77,7 +63,7 @@ export async function loadStage(
 
 export async function saveStage(
   tournamentId: number,
-  stage: Stage,
+  stage: StageSettings,
 ): Promise<SaveStageResponse> {
   const response = await fetch(
     Routes.tournament_stage_path(tournamentId, stage.id),

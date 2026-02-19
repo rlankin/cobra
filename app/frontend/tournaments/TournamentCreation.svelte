@@ -4,13 +4,15 @@
     createTournament,
     emptyTournamentOptions,
     type Errors,
-    type FeatureFlags,
     loadNewTournament,
-    type TournamentOptions,
-    type TournamentSettings,
     ValidationError,
   } from "./TournamentSettings";
   import TournamentSettingsForm from "./TournamentSettingsForm.svelte";
+  import type {
+    TournamentSettings,
+    FeatureFlags,
+    TournamentOptions,
+  } from "../models/TournamentSettings";
 
   let tournament: TournamentSettings;
   let options: TournamentOptions = emptyTournamentOptions();

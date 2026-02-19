@@ -1,14 +1,11 @@
 <script lang="ts">
   import Round from "./Round.svelte";
-  import type {
-    PairingsContext,
-    Stage,
-    Tournament,
-    TournamentPolicies,
-  } from "./PairingsData";
+  import type { PairingsContext } from "./PairingsData";
   import FontAwesomeIcon from "../widgets/FontAwesomeIcon.svelte";
   import { getContext } from "svelte";
-  import type { ScoreReport } from "./SelfReport";
+  import type { Tournament, TournamentPolicies } from "../models/Tournament";
+  import type { Stage } from "../models/Stage";
+  import type { ScoreReport } from "../models/ScoreReport";
 
   let {
     tournament,

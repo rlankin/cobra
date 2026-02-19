@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { type Stage, type TableRange } from "./StageSettings";
+  import type { StageSettings, TableRange } from "../models/Stage";
   import FontAwesomeIcon from "../widgets/FontAwesomeIcon.svelte";
 
   interface Props {
-    stage: Stage;
+    stage: StageSettings;
     tableRange?: TableRange;
   }
 
