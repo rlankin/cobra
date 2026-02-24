@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     resources :tournaments do
       resources :rounds, only: %i[index show create destroy] do
         resources :pairings, only: %i[index create destroy] do
+          get :match_slips, on: :collection
           post :report, on: :member
           delete :reset_self_report, on: :member
         end

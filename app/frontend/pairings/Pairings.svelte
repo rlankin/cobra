@@ -18,7 +18,6 @@
   let pairings = $state<Pairing[]>();
 
   onMount(async () => {
-    pairings = undefined;
     const pairingsData = await loadPairings(tournamentId);
 
     for (const stage of pairingsData.stages) {
@@ -61,7 +60,7 @@
   </a>
 </p>
 
-<h2>Round {roundNumber} pairings</h2>
+<h2>Round {roundNumber} Pairings</h2>
 
 {#if pairings}
   <table class="table table-striped">
