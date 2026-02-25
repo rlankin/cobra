@@ -54,7 +54,7 @@
   });
 </script>
 
-<p>
+<p class="dontprint">
   <a href={`/beta/tournaments/${tournamentId}/rounds`} class="btn btn-primary">
     <FontAwesomeIcon icon="arrow-left" /> Back to Pairings
   </a>

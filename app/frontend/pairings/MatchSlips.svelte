@@ -13,6 +13,16 @@
 
   let roundNumber = $state(0);
   let pairings = $state<Pairing[]>();
+  let collated = $state(false);
+
+  const sortByTableNumber = (p1: Pairing, p2: Pairing) => {
+    if (p1.table_number < p2.table_number) {
+      return -1;
+    } else if (p1.table_number > p2.table_number) {
+      return 1;
+    }
+    return 0;
+  };
 
   onMount(async () => {
     const pairingsData = await loadPairings(tournamentId);
@@ -30,25 +40,42 @@
       for (const pairing of round.pairings) {
         pairings.push(pairing);
       }
-      pairings.sort((p1, p2) => {
-        if (p1.table_number < p2.table_number) {
-          return -1;
-        } else if (p1.table_number > p2.table_number) {
-          return 1;
-        }
-        return 0;
-      });
+      pairings.sort(sortByTableNumber);
     }
   });
+
+  function toggleCollated() {
+    collated = !collated;
+    
+    if (!pairings) {
+      return;
+    }
+
+    if (collated && pairings.length >= 5) {
+      let collatedPairings: Pairing[] = [];
+      const period = Math.ceil(pairings.length / 4);
+      for (let i = 0; i < period; i++) {
+        for (let j = i; j < pairings.length; j += period) {
+          collatedPairings.push(pairings[j]);
+        }
+      }
+      pairings = collatedPairings;
+    } else {
+      pairings.sort(sortByTableNumber);
+    }
+  }
 </script>
 
-<p>
+<p class="dontprint">
   <a href={`/beta/tournaments/${tournamentId}/rounds`} class="btn btn-primary">
     <FontAwesomeIcon icon="arrow-left" /> Back to Pairings
   </a>
+  <button type="button" class="btn btn-primary" onclick={toggleCollated}>
+    <FontAwesomeIcon icon="flag-checkered" /> {collated ? "Uncollate" : "Collate"}
+  </button>
 </p>
 
-<h2>Round {roundNumber} Match Slips</h2>
+<h2 class="dontprint">Round {roundNumber} Match Slips</h2>
 
 {#if pairings}
   <div class="slips">
