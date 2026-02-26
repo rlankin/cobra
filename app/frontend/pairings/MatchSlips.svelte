@@ -98,7 +98,7 @@
           </thead>
           <tbody>
             <tr>
-              <td>{pairing.player1.name}</td>
+              <td>{pairing.player1.name_with_pronouns}</td>
               <td></td>
               <td></td>
               <td></td>
@@ -106,7 +106,7 @@
               <td></td>
             </tr>
             <tr>
-              <td>{pairing.player2.name}</td>
+              <td>{pairing.player2.name_with_pronouns}</td>
               <td></td>
               <td></td>
               <td></td>
