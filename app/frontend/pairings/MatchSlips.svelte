@@ -46,7 +46,7 @@
 
   function toggleCollated() {
     collated = !collated;
-    
+
     if (!pairings) {
       return;
     }
@@ -71,7 +71,8 @@
     <FontAwesomeIcon icon="arrow-left" /> Back to Pairings
   </a>
   <button type="button" class="btn btn-primary" onclick={toggleCollated}>
-    <FontAwesomeIcon icon="flag-checkered" /> {collated ? "Uncollate" : "Collate"}
+    <FontAwesomeIcon icon="flag-checkered" />
+    {collated ? "Uncollate" : "Collate"}
   </button>
 </p>
 
@@ -84,7 +85,7 @@
 
       <div class="match_slip">
         <h4>Round {roundNumber} - Table {pairing.table_number}</h4>
-        
+
         <table class="table table-bordered">
           <thead>
             <tr>
@@ -115,8 +116,12 @@
             </tr>
           </tbody>
         </table>
-        
-        <p>Indicate how many wins, timed wins, and draws were earned by each player. Then initial to confirm. Tick "Drop?" if you would like to drop.</p>
+
+        <p>
+          Indicate how many wins, timed wins, and draws were earned by each
+          player. Then initial to confirm. Tick "Drop?" if you would like to
+          drop.
+        </p>
       </div>
     {/each}
   </div>
