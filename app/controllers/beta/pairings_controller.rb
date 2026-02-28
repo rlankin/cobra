@@ -8,8 +8,6 @@ module Beta
 
     def index
       authorize @tournament, :show?
-
-      @round_id = params[:round_id]
     end
 
     def create
@@ -26,6 +24,10 @@ module Beta
       pairing.destroy
 
       head :ok
+    end
+
+    def match_slips
+      authorize @tournament, :edit?
     end
 
     def report

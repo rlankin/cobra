@@ -13,7 +13,8 @@ class ApplicationController < ActionController::Base
   BETA_PATHS = [
     %r{^/tournaments/[0-9]+/rounds$},
     %r{^/tournaments/[0-9]+/rounds/[0-9]+$},
-    %r{^/tournaments/[0-9]+/rounds/[0-9]+/pairings$}
+    %r{^/tournaments/[0-9]+/rounds/[0-9]+/pairings$},
+    %r{^/tournaments/[0-9]+/rounds/[0-9]+/pairings/match_slips$}
   ].freeze
 
   def current_user

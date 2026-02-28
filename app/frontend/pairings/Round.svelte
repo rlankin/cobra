@@ -93,7 +93,7 @@
           {/if}
           <a
             class="btn btn-primary"
-            href="/tournaments/{tournament.id}/rounds/{round.id}/pairings/match_slips"
+            href="/beta/tournaments/{tournament.id}/rounds/{round.id}/pairings/match_slips"
           >
             <FontAwesomeIcon icon="flag-checkered" /> Match slips
           </a>
