@@ -1,12 +1,11 @@
 <script lang="ts">
-  import { getContext } from "svelte";
   import AdminReportOptions from "./AdminReportOptions.svelte";
   import FontAwesomeIcon from "$lib/components/FontAwesomeIcon.svelte";
   import ModalDialog from "$lib/components/ModalDialog.svelte";
   import SelfReportOptions from "$lib/components/SelfReportOptions.svelte";
   import type { Stage } from "$lib/model/Stage";
   import type { Round } from "$lib/model/Round";
-  import type { Pairing, PairingsContext } from "$lib/model/Pairing";
+  import { getPairingsContext, type Pairing } from "$lib/model/Pairing";
   import type { Tournament } from "$lib/model/Tournament";
   import { readableReportScore, reportsMatch, type ScoreReport } from "$lib/model/ScoreReport";
   import PlayerDisplay from "$lib/components/PlayerDisplay.svelte";
@@ -37,7 +36,7 @@
     resetReportsCallback?: (pairingId: number) => void;
   } = $props();
 
-  const pairingsContext: PairingsContext = getContext("pairingsContext");
+  const pairingsContext = getPairingsContext();
 
   let leftPlayer = $derived(
     stage.is_single_sided && pairing.player2.side == "corp"

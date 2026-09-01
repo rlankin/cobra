@@ -1,15 +1,14 @@
 <script lang="ts">
   import Pairing from "./Pairing.svelte";
   import RoundTimerControls from "./RoundTimerControls.svelte";
-  import { getContext } from "svelte";
   import FontAwesomeIcon from "$lib/components/FontAwesomeIcon.svelte";
   import type { Tournament } from "$lib/model/Tournament";
   import type { Round } from "$lib/model/Round";
   import type { ScoreReport } from "$lib/model/ScoreReport";
   import type { Stage } from "$lib/model/Stage";
-  import type { PairingsContext } from "$lib/model/Pairing";
-  import { showReportedPairings } from "$lib/utils/ShowReportedPairings";
+  import { getPairingsContext } from "$lib/model/Pairing";
   import { resolve } from "$app/paths";
+  import { showReportedPairings } from "$lib/utils/ShowReportedPairings";
 
   let {
     tournament,
@@ -46,7 +45,7 @@
     ) => void;
   } = $props();
 
-  const pairingsContext: PairingsContext = getContext("pairingsContext");
+  const pairingsContext = getPairingsContext();
 
   function complete() {
     if (

@@ -1,7 +1,6 @@
 <script lang="ts">
-  import type { Pairing, PairingsContext } from "$lib/model/Pairing";
+  import { type Pairing, getPairingsContext } from "$lib/model/Pairing";
   import type { Player } from "$lib/model/Player";
-  import { getContext } from "svelte";
   import FontAwesomeIcon from "./FontAwesomeIcon.svelte";
   import Identity from "./identity/Identity.svelte";
   import { showIdentities } from "$lib/utils/ShowIdentities";
@@ -22,8 +21,7 @@
     changePlayerSide?: (player: Player, side: string) => void;
   } = $props();
 
-  const pairingsContext: PairingsContext | undefined =
-    getContext("pairingsContext");
+  const pairingsContext = getPairingsContext();
 </script>
 
 {#snippet setSideButton(player: Player, side: string)}
@@ -50,7 +48,7 @@
   <!-- Side -->
   {#if is_single_sided && pairing?.player1.id && pairing.player2.id}
     <br />
-    {#if pairingsContext && pairingsContext.showOrganizerView && changePlayerSide}
+    {#if pairingsContext.showOrganizerView && changePlayerSide}
       <!-- eslint-disable-next-line @typescript-eslint/no-confusing-void-expression -->
       {@render setSideButton(player, "corp")}
       <!-- eslint-disable-next-line @typescript-eslint/no-confusing-void-expression -->
@@ -62,7 +60,7 @@
 
   <!-- IDs -->
   {#if show_ids}
-    <div class="ids" style={$showIdentities ? "display: block;" : ""}>
+    <div class="ids" style={$showIdentities ? "display: block;" : "display: none;"}>
       {#if is_single_sided}
         <Identity
           identity={player.side == "corp" ? player.corp_id : player.runner_id}

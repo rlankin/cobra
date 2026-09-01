@@ -1,11 +1,10 @@
 <script lang="ts">
   import Round from "./Round.svelte";
-  import { getContext } from "svelte";
   import FontAwesomeIcon from "$lib/components/FontAwesomeIcon.svelte";
   import type { ScoreReport } from "$lib/model/ScoreReport";
   import type { Stage } from "$lib/model/Stage";
   import type { Tournament, TournamentPolicies } from "$lib/model/Tournament";
-  import type { PairingsContext } from "$lib/model/Pairing";
+  import { getPairingsContext } from "$lib/model/Pairing";
   import { resolve } from "$app/paths";
 
   let {
@@ -43,7 +42,7 @@
     ) => void;
   } = $props();
 
-  const pairingsContext: PairingsContext = getContext("pairingsContext");
+  const pairingsContext = getPairingsContext();
 </script>
 
 <div id={`stage${stage.id}`} class="accordion mb-3" role="tablist">
