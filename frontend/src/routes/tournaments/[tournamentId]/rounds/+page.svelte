@@ -1,4 +1,5 @@
 <script lang="ts">
+  import "$lib/assets/css/pairings.sass";
   import Stage from "./Stage.svelte";
   // import {
   //   completeRound,
@@ -182,7 +183,7 @@
   {/if}
 {:else}
   <!-- Upper controls -->
-  <div class="display: block;">
+  <div class="w-100">
     {#if data.stages.every((s) => s.rounds.length === 0)}
       <a
         href={resolve(`/tournaments/${params.tournamentId}/players/meeting?back_to=${ctx.showOrganizerView ? "pairings" : "view_pairings"}`)}
@@ -324,7 +325,7 @@
 
   <!-- Elimination stage controls -->
   {#if ctx.showOrganizerView && data.stages.length > 0 && !data.stages[data.stages.length - 1].is_elimination}
-    <h4>Cut to...</h4>
+    <h4 class="w-100">Cut to...</h4>
     <table>
       <tbody>
         <tr>
