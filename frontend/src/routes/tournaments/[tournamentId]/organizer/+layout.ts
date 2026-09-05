@@ -7,7 +7,7 @@ export const load: LayoutLoad = async ({ parent }) => {
   const parentData = await parent();
   const user = await authStore.checkAuth();
   if (user?.id !== parentData.tournamentData.tournament.user_id) {
-    redirect(307, "/");
+    redirect(307, `/tournaments/${parentData.tournamentData.tournament.id}`);
   }
 
   return {};
