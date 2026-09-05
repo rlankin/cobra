@@ -1,62 +1,30 @@
 <script lang="ts">
   import Pairing from "./Pairing.svelte";
-  import RoundTimerControls from "./RoundTimerControls.svelte";
   import FontAwesomeIcon from "$lib/components/FontAwesomeIcon.svelte";
   import type { Tournament } from "$lib/model/Tournament";
   import type { Round } from "$lib/model/Round";
   import type { ScoreReport } from "$lib/model/ScoreReport";
   import type { Stage } from "$lib/model/Stage";
-  import { getPairingsContext } from "$lib/model/Pairing";
   import { resolve } from "$app/paths";
-  import { showReportedPairings } from "$lib/utils/ShowReportedPairings";
 
   let {
     tournament,
     stage,
     round,
     startExpanded,
-    deletePairingCallback,
-    changePlayerSideCallback,
     reportScoreCallback,
-    completeCallback,
-    updateTimerCallback,
   }: {
     tournament: Tournament;
     stage: Stage;
     round: Round;
     startExpanded: boolean;
-    deletePairingCallback?: (roundId: number, pairingId: number) => void;
-    changePlayerSideCallback?: (
-      roundId: number,
-      pairingId: number,
-      side: string,
-    ) => void;
     reportScoreCallback?: (
       roundId: number,
       pairingId: number,
       report: ScoreReport,
       selfReport: boolean,
     ) => void;
-    completeCallback?: (roundId: number) => void;
-    updateTimerCallback?: (
-      roundId: number,
-      length_minutes: number,
-      operation: string,
-    ) => void;
   } = $props();
-
-  const pairingsContext = getPairingsContext();
-
-  function complete() {
-    if (
-      round.pairings.length == round.pairings_reported ||
-      confirm(
-        `${round.pairings.length - round.pairings_reported} pairings have not been reported. Are you sure you want to complete this round?`,
-      )
-    ) {
-      completeCallback?.(round.id);
-    }
-  }
 </script>
 
 <div class="card">
@@ -76,32 +44,6 @@
   <div class="collapse{startExpanded ? ' show' : ''}" id="round{round.id}">
     <div class="col-12 my-3">
       <div aria-label="round controls">
-        <!-- Admin controls -->
-        {#if pairingsContext.showOrganizerView}
-          <a
-            class="btn btn-warning"
-            href={resolve(`/tournaments/${tournament.id}/rounds/${round.id}`)}
-          >
-            <FontAwesomeIcon icon="pencil" /> Edit
-          </a>
-          {#if !round.completed}
-            <button type="button" class="btn btn-warning" onclick={complete}>
-              <FontAwesomeIcon icon="check" /> Complete
-            </button>
-          {/if}
-          <a
-            class="btn btn-primary"
-            href={resolve(`/tournaments/${tournament.id}/rounds/${round.id}/pairings/match_slips`)}
-          >
-            <FontAwesomeIcon icon="flag-checkered" /> Match slips
-          </a>
-          <a
-            class="btn btn-primary"
-            href={resolve(`/tournaments/${tournament.id}/rounds/${round.id}/pairings/sharing`)}
-          >
-            <FontAwesomeIcon icon="share" /> Export markdown
-          </a>
-        {/if}
         <a
           class="btn btn-primary"
           href={resolve(`/tournaments/${tournament.id}/rounds/${round.id}/pairings`)}
@@ -110,37 +52,21 @@
         </a>
       </div>
 
-      <!-- Timer controls -->
-      {#if pairingsContext.showOrganizerView && !round.completed}
-        <RoundTimerControls {round} updateCallback={updateTimerCallback} />
-      {/if}
-
       <!-- Pairings -->
       {#each round.pairings as pairing (pairing.id)}
-        {#if !pairingsContext.showOrganizerView || $showReportedPairings || !pairing.reported}
-          {#if pairingsContext.showOrganizerView}
-            <hr />
-          {/if}
-          <Pairing
-            {tournament}
-            {pairing}
-            {round}
-            {stage}
-            deleteCallback={(pairingId: number) => {
-              deletePairingCallback?.(round.id, pairingId);
-            }}
-            changePlayerSideCallback={(pairingId: number, side: string) => {
-              changePlayerSideCallback?.(round.id, pairingId, side);
-            }}
-            reportScoreCallback={(
-              pairingId: number,
-              report: ScoreReport,
-              selfReport: boolean,
-            ) => {
-              reportScoreCallback?.(round.id, pairingId, report, selfReport);
-            }}
-          />
-        {/if}
+        <Pairing
+          {tournament}
+          {pairing}
+          {round}
+          {stage}
+          reportScoreCallback={(
+            pairingId: number,
+            report: ScoreReport,
+            selfReport: boolean,
+          ) => {
+            reportScoreCallback?.(round.id, pairingId, report, selfReport);
+          }}
+        />
       {/each}
     </div>
   </div>

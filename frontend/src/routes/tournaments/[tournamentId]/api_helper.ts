@@ -1,11 +1,10 @@
 import { COBRA_API_SERVER } from "$app/env/public";
 import type { Stage } from "$lib/model/Stage";
-import { Tournament, TournamentPolicies } from "$lib/model/Tournament";
+import { TournamentPolicies } from "$lib/model/Tournament";
 import { globalMessages } from "$lib/utils/GlobalMessageState.svelte";
 
 class PairingsData {
   policy = new TournamentPolicies();
-  tournament = new Tournament();
   stages: Stage[] = [];
   warnings?: string[] = [];
 }

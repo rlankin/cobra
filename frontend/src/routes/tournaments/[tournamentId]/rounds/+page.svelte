@@ -1,119 +1,20 @@
 <script lang="ts">
   import "$lib/assets/css/pairings.sass";
   import Stage from "./Stage.svelte";
-  // import {
-  //   completeRound,
-  //   createStage,
-  //   deletePairing,
-  //   loadPairings,
-  //   pairRound,
-  //   setPlayerRegistrationStatus as setPlayerRegistrationStatusRequest,
-  //   setRegistrationStatus as setRegistrationStatusRequest,
-  //   updateRoundTimer,
-  // } from "./PairingsData";
   import GlobalMessages from "$lib/components/GlobalMessages.svelte";
   import FontAwesomeIcon from "$lib/components/FontAwesomeIcon.svelte";
   import ModalDialog from "$lib/components/ModalDialog.svelte";
   import type { ScoreReport } from "$lib/model/ScoreReport";
-  import { setPairingsContext, type PairingsContext } from "$lib/model/Pairing";
   import { resolve } from "$app/paths";
   import type { PageProps } from "./$types";
-  import { showReportedPairings } from "$lib/utils/ShowReportedPairings";
   import { showIdentities } from "$lib/utils/ShowIdentities";
 
   let { data, params }: PageProps = $props();
 
   let forcePlayerView = $state(false);
-  // svelte-ignore state_referenced_locally
-  let ctx: PairingsContext = $state({ showOrganizerView: data.policy.update });
-
-  setPairingsContext(ctx);
 
   function toggleForcePlayerView() {
     forcePlayerView = !forcePlayerView;
-    ctx.showOrganizerView = data.policy.update && !forcePlayerView;
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async function addStage(cutSingleElim?: boolean, cutCount?: number) {
-    // const success = await createStage(params.tournamentId, cutSingleElim, cutCount);
-    // if (!success) {
-    //   return;
-    // }
-
-    // pairingsData = await loadPairings(params.tournamentId);
-  }
-
-  function pairNewRound() {
-    if (
-      data.tournament.self_registration &&
-      (!data.tournament.registration_closed ||
-        data.tournament.any_player_unlocked) &&
-      !confirm(
-        "Registration is still open or some players are unlocked. Pair new round anyway?",
-      )
-    ) {
-      return;
-    }
-
-    // const success = await pairRound(params.tournamentId);
-    // if (!success) {
-    //   return;
-    // }
-
-    // pairingsData = await loadPairings(params.tournamentId);
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async function setRegistrationStatus(open: boolean) {
-    // const success = await setRegistrationStatusRequest(params.tournamentId, open);
-    // if (!success) {
-    //   return;
-    // }
-
-    // pairingsData = await loadPairings(params.tournamentId);
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async function setPlayerRegistrationStatus(open: boolean) {
-    // const success = await setPlayerRegistrationStatusRequest(
-    //   params.tournamentId,
-    //   open,
-    // );
-    // if (!success) {
-    //   return;
-    // }
-
-    // pairingsData = await loadPairings(params.tournamentId);
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  function deletePairingCallback(roundId: number, pairingId: number) {
-    if (!confirm("Are you sure? This cannot be reversed.")) {
-      return;
-    }
-
-    // const success = await deletePairing(params.tournamentId, roundId, pairingId);
-    // if (!success) {
-    //   return;
-    // }
-
-    // pairingsData = await loadPairings(params.tournamentId);
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async function changePlayerSideCallback(roundId: number, pairingId: number, side: string) {
-    // const success = await changePlayerSide(
-    //   params.tournamentId,
-    //   roundId,
-    //   pairingId,
-    //   side,
-    // );
-    // if (!success) {
-    //   return;
-    // }
-
-    // pairingsData = await loadPairings(params.tournamentId);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -131,79 +32,23 @@
 
     // pairingsData = await loadPairings(params.tournamentId);
   }
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async function completeRoundCallback(roundId: number) {
-    // const success = await completeRound(params.tournamentId, roundId, true);
-    // if (!success) {
-    //   return;
-    // }
-
-    // pairingsData = await loadPairings(params.tournamentId);
-  }
-
-  function updateTimerCallback(roundId: number, length_minutes: number, operation: string) {
-    if (
-      operation === "reset" &&
-      !confirm("This will clear all elapsed time in the round. Are you sure?")
-    ) {
-      return;
-    }
-
-    // const success = await updateRoundTimer(
-    //   params.tournamentId,
-    //   roundId,
-    //   length_minutes,
-    //   operation,
-    // );
-    // if (!success) {
-    //   return;
-    // }
-
-    // window.location.href = `/beta/tournaments/${params.tournamentId}/rounds`;
-  }
 </script>
 
 <GlobalMessages />
 
 <p></p>
 
-{#if data.stages.length == 0}
-  <!-- Add Swiss stage button -->
-  {#if ctx.showOrganizerView}
-    <button
-      type="button"
-      class="btn btn-success"
-      onclick={async () => {
-        await addStage();
-      }}
-    >
-      <FontAwesomeIcon icon="plus" /> Add Swiss stage
-    </button>
-  {/if}
-{:else}
+{#if data.stages.length > 0}
   <!-- Upper controls -->
   <div class="w-100">
     {#if data.stages.every((s) => s.rounds.length === 0)}
       <a
-        href={resolve(`/tournaments/${params.tournamentId}/players/meeting?back_to=${ctx.showOrganizerView ? "pairings" : "view_pairings"}`)}
+        href={resolve(`/tournaments/${params.tournamentId}/players/meeting?back_to=view_pairings`)}
         class="btn btn-primary"
       >
         <FontAwesomeIcon icon="list-ul" /> Player meeting
       </a>
     {:else}
-      {#if ctx.showOrganizerView}
-        <button
-          type="button"
-          class="btn btn-primary"
-          onclick={() => {
-            showReportedPairings.update((value) => !value);
-
-          }}
-        >
-          <FontAwesomeIcon icon="eye-slash" /> Show/hide reported pairings
-        </button>
-      {/if}
       <button
         type="button"
         class="btn btn-primary"
@@ -227,84 +72,11 @@
           class="btn btn-primary float-right"
           onclick={toggleForcePlayerView}
         >
-          {#if ctx.showOrganizerView}
-            <FontAwesomeIcon icon="users" /> See player pairings view
-          {:else}
-            <FontAwesomeIcon icon="user" /> See organizer pairings view
-          {/if}
+          <FontAwesomeIcon icon="user" /> See organizer pairings view
         </button>
-      {/if}
-
-      {#if ctx.showOrganizerView && !$showReportedPairings}
-        <div class="alert alert-info mt-3">
-          Reported scores are currently hidden on this page. This will not
-          affect other users viewing this page.
-        </div>
       {/if}
     {/if}
   </div>
-
-  <!-- Tournament admin controls -->
-  {#if ctx.showOrganizerView}
-    <div class="mt-3">
-      {#if !data.tournament.registration_closed}
-        <button
-          type="button"
-          class="btn btn-info"
-          onclick={async () => {
-            await setRegistrationStatus(false);
-          }}
-        >
-          <FontAwesomeIcon icon="lock" /> Close registration
-        </button>
-      {:else if data.tournament.self_registration && data.stages.every((s) => s.rounds.length == 0)}
-        <button
-          type="button"
-          class="btn btn-secondary"
-          onclick={async () => {
-            await setRegistrationStatus(true);
-          }}
-        >
-          <FontAwesomeIcon icon="folder-open" /> Open registration
-        </button>
-        {#if !data.tournament.all_players_unlocked}
-          <button
-            type="button"
-            class="btn btn-secondary"
-            onclick={async () => {
-              await setPlayerRegistrationStatus(false);
-            }}
-          >
-            <FontAwesomeIcon icon="unlock" /> Unlock all players
-          </button>
-        {/if}
-        {#if data.tournament.any_player_unlocked}
-          <button
-            type="button"
-            class="btn btn-info"
-            onclick={async () => {
-              await setPlayerRegistrationStatus(true);
-            }}
-          >
-            <FontAwesomeIcon icon="lock" /> Lock all players
-          </button>
-        {/if}
-      {/if}
-
-      {#if data.stages.every((s) => s.rounds.every((r) => r.completed))}
-        <button type="button" class="btn btn-success" onclick={pairNewRound}>
-          <FontAwesomeIcon icon="plus" /> Pair new round!
-        </button>
-      {:else}
-        <button class="btn btn-secondary disabled">
-          <FontAwesomeIcon icon="plus" /> Pair new round!
-        </button>
-        <span class="ml-2">
-          All rounds must be flagged complete before you can add a new round.
-        </span>
-      {/if}
-    </div>
-  {/if}
 
   <!-- Stages -->
   <div class="mt-3">
@@ -312,63 +84,11 @@
       <Stage
         {stage}
         startExpanded={index === data.stages.length - 1}
-        tournament={data.tournament}
-        tournamentPolicies={data.policy}
-        {deletePairingCallback}
-        {changePlayerSideCallback}
+        tournament={data.tournamentData.tournament}
         {reportScoreCallback}
-        {completeRoundCallback}
-        {updateTimerCallback}
       />
     {/each}
   </div>
-
-  <!-- Elimination stage controls -->
-  {#if ctx.showOrganizerView && data.stages.length > 0 && !data.stages[data.stages.length - 1].is_elimination}
-    <h4 class="w-100">Cut to...</h4>
-    <table>
-      <tbody>
-        <tr>
-          <td>Single Elimination</td>
-          {#each [2, 3, 4, 8, 16] as num (num)}
-            <td class="pl-2">
-              <button
-                type="button"
-                class="btn btn-success"
-                style="width: 100px"
-                onclick={async () => {
-                  await addStage(true, num);
-                }}
-                aria-label={`cut to single elimination top ${num}`}
-              >
-                <FontAwesomeIcon icon="scissors" /> Top {num}
-              </button>
-            </td>
-          {/each}
-        </tr>
-        <tr>
-          <td>Double Elimination</td>
-          <td class="pl-2"></td>
-          <td class="pl-2"></td>
-          {#each [4, 8, 16] as num (num)}
-            <td class="pl-2">
-              <button
-                type="button"
-                class="btn btn-success"
-                style="width: 100px"
-                onclick={async () => {
-                  await addStage(false, num);
-                }}
-                aria-label={`cut to double elimination top ${num}`}
-              >
-                <FontAwesomeIcon icon="scissors" /> Top {num}
-              </button>
-            </td>
-          {/each}
-        </tr>
-      </tbody>
-    </table>
-  {/if}
 
   <!-- FAQ dialog -->
   <ModalDialog id="faq" headerText="FAQ">

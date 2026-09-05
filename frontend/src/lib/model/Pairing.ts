@@ -1,4 +1,3 @@
-import { createContext } from "svelte";
 import type { Player } from "./Player";
 import type { ScoreReport } from "./ScoreReport";
 
@@ -32,9 +31,3 @@ export interface PairingPolicies {
   view_decks?: boolean;
   self_report: boolean;
 }
-
-export interface PairingsContext {
-  showOrganizerView: boolean;
-}
-
-export const [getPairingsContext, setPairingsContext] = createContext<PairingsContext>();
