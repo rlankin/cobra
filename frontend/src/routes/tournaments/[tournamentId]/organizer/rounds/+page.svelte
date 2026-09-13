@@ -38,6 +38,7 @@
       cutCount,
     );
     if (!success) {
+      // TODO: Notify the user
       return;
     }
 
@@ -61,6 +62,7 @@
       data.tournamentData.tournament.id
     );
     if (!success) {
+      // TODO: Notify the user
       return;
     }
 
@@ -74,6 +76,7 @@
       open,
     );
     if (!success) {
+      // TODO: Notify the user
       return;
     }
 
@@ -87,6 +90,7 @@
       open,
     );
     if (!success) {
+      // TODO: Notify the user
       return;
     }
 
@@ -104,6 +108,7 @@
       roundId,
       pairingId);
     if (!success) {
+      // TODO: Notify the user
       return;
     }
 
@@ -119,6 +124,7 @@
       data.tournamentData.csrf_token,
     );
     if (!success) {
+      // TODO: Notify the user
       return;
     }
 
@@ -135,6 +141,7 @@
       data.tournamentData.csrf_token,
     );
     if (!success) {
+      // TODO: Notify the user
       return;
     }
 
@@ -149,6 +156,7 @@
       true
     );
     if (!success) {
+      // TODO: Notify the user
       return;
     }
 
@@ -171,6 +179,7 @@
       operation,
     );
     if (!success) {
+      // TODO: Notify the user
       return;
     }
 

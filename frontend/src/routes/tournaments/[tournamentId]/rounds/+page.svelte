@@ -29,6 +29,7 @@
       data.tournamentData.csrf_token,
     );
     if (!success) {
+      // TODO: Notify the user
       return;
     }
 

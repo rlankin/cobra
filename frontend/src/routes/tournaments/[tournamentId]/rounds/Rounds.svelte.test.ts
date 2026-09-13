@@ -1,3 +1,8 @@
+/*
+  See the comment in /frontend/src/routes/tournaments/[tournamentId]/organizer/rounds/Rounds.svelte.test.ts
+  for an explanation of the usage of rerender().
+*/
+
 import {
   cleanup,
   getByRole,

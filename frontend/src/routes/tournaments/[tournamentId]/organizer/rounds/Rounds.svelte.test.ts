@@ -1,3 +1,16 @@
+/*
+  Explanation of the rerender() function used throughout this file:
+
+  render() returns a rerender() function which is useful for simulating changes
+  to props. We rely on invalidateAll() to cause load() to be called again,
+  changing the data prop, which in turn causes the props object's reactivity to
+  kick in and rerender things. This is where rerender() comes into play for us.
+  
+  Additionally, Svelte seems not to register differences in the props if the
+  props object's reference hasn't changed, so we are cloning it in the tests to
+  ensure that it's always a new value (to Svelte).
+*/
+
 import {
   cleanup,
   getByRole,
