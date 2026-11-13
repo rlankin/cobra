@@ -60,11 +60,10 @@
             <thead>
               <tr>
                 <th>Name</th>
-                <th>Wins</th>
-                <th>Timed Wins</th>
-                <th>Draws</th>
-                <th>Initials</th>
-                <th>Drop?</th>
+                <th style="width: 10%">Wins</th>
+                <th style="width: 10%">Draws</th>
+                <th style="width: 10%">Initials</th>
+                <th style="width: 10%">Drop?</th>
               </tr>
             </thead>
             <tbody>
@@ -74,11 +73,9 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
               </tr>
               <tr>
                 <td>{pairing.player2.name_with_pronouns || pairing.player2.name}</td>
-                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
