@@ -33,6 +33,17 @@
         <FontAwesomeIcon icon="eye" /> Show byes
       {/if}
     </button>
+    <button
+      type="button"
+      class="btn btn-primary float-right"
+      title="Print"
+      onclick={() => {
+        window.print();
+      }}
+    >
+      <FontAwesomeIcon icon="print" />
+      Print
+    </button>
   </p>
   
   {#if data.round}
